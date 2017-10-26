@@ -18,6 +18,7 @@ package com.alibaba.dubbo.common;
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.alibaba.dubbo.common.utils.NetUtils;
 import com.alibaba.dubbo.common.utils.StringUtils;
+import com.alibaba.ml.timeout.cache.TimeOutConfigCache;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -523,9 +524,26 @@ public final class URL implements Serializable {
         if (value == null || value.length() == 0) {
             return defaultValue;
         }
+        //配置的超时时间
+      	if ("timeout".equalsIgnoreCase(key)&&value.contains("@")) {
+      	    return getParameterTimeOut(value);
+      	}
         int i = Integer.parseInt(value);
         getNumbers().put(key, i);
         return i;
+    }
+    /**
+     * 
+     * 功能说明:获取超时时间
+     * @param key
+     * @return int
+     * @time:2017年10月25日下午7:15:45
+     * @author:linghushaoxia
+     * @exception:
+     *
+     */
+    private int getParameterTimeOut(String key){
+	return TimeOutConfigCache.getInstance().getTimeOutByConfig(key);
     }
 
     public short getParameter(String key, short defaultValue) {
@@ -722,6 +740,10 @@ public final class URL implements Serializable {
         if (value == null || value.length() == 0) {
             return defaultValue;
         }
+        //配置的超时时间
+      	if ("timeout".equalsIgnoreCase(key)&&value.contains("@")) {
+      	    return getParameterTimeOut(value);
+      	}
         int i = Integer.parseInt(value);
         getNumbers().put(methodKey, i);
         return i;

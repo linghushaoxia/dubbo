@@ -18,4 +18,5 @@ public class Consumer {
 
         System.out.println(hello); // 显示调用结果
     }
+    
 }

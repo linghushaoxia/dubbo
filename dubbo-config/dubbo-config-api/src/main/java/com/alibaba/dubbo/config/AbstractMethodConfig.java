@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 package com.alibaba.dubbo.config;
-
-import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.config.support.Parameter;
+import com.alibaba.dubbo.common.Constants;
 import com.alibaba.dubbo.rpc.cluster.LoadBalance;
 
 import java.util.Map;
@@ -32,7 +31,7 @@ public abstract class AbstractMethodConfig extends AbstractConfig {
     private static final long serialVersionUID = 1L;
 
     // 远程调用超时时间(毫秒)
-    protected Integer timeout;
+    protected String timeout;
 
     // 重试次数
     protected Integer retries;
@@ -64,11 +63,11 @@ public abstract class AbstractMethodConfig extends AbstractConfig {
     // 自定义参数
     protected Map<String, String> parameters;
 
-    public Integer getTimeout() {
-        return timeout;
+    public String getTimeout() {
+	return timeout;
     }
 
-    public void setTimeout(Integer timeout) {
+    public void setTimeout(String timeout) {
         this.timeout = timeout;
     }
 

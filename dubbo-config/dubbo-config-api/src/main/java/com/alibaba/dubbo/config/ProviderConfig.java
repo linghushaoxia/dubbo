@@ -302,7 +302,7 @@ public class ProviderConfig extends AbstractServiceConfig {
     }
 
     @Override
-    public Integer getTimeout() {
+    public String getTimeout() {
         return super.getTimeout();
     }
 

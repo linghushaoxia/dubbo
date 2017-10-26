@@ -29,10 +29,12 @@ public class ConsumerConfig extends AbstractReferenceConfig {
     private Boolean isDefault;
 
     @Override
-    public void setTimeout(Integer timeout) {
+    public void setTimeout(String timeout) {
         super.setTimeout(timeout);
+        //timeOutTcp由timeOut获取
+        Integer timeOutTcp =1000;
         String rmiTimeout = System.getProperty("sun.rmi.transport.tcp.responseTimeout");
-        if (timeout != null && timeout > 0
+        if (timeOutTcp != null && timeOutTcp > 0
                 && (rmiTimeout == null || rmiTimeout.length() == 0)) {
             System.setProperty("sun.rmi.transport.tcp.responseTimeout", String.valueOf(timeout));
         }
